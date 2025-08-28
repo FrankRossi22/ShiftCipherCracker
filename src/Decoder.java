@@ -24,17 +24,22 @@ public class Decoder {
                 "VMJYF WAVNY HWOFN PCLZH KYHTH APJHJ JVBUA VMVUL ZBJOY LYVBA\n" +
                 "PUNJV UALZA PUOPZ IVVRV UAOLB IVHAD HYZLP GPUNA OLLUP NTHAO\n" +
                 "PZWHZ ZHNLL EJLYW ALKMY VTQVO URLLN HUPUA LSSPN LUJLP UDHYY";
+
+        //Set the number of times to shift each letter (excluding ' ' and '\n')
         int shift = 19;
-            String decodedText = "";
-            for (int i = 0; i < cypherText.length(); i++) {
-                if(cypherText.charAt(i) == ' ' || cypherText.charAt(i) == '\n') {
-                    decodedText += cypherText.charAt(i);
-                    continue;
-                }
-                int charVal = cypherText.charAt(i) - 'A';
-                charVal = (charVal + shift) % 26; // Shift back by j positions
-                char decodedChar = (char) (charVal + 'A');
-                decodedText += decodedChar;
+        String decodedText = "";
+
+        //for loop to go through each character in the cypherText, shift it, and then add it to the decodedText
+        for (int i = 0; i < cypherText.length(); i++) {
+            if(cypherText.charAt(i) == ' ' || cypherText.charAt(i) == '\n') {
+                decodedText += cypherText.charAt(i);
+                continue;
+            }
+            // Get the character value (0-25) by subtracting 'A', apply the shift, and convert back to a character
+            int charVal = cypherText.charAt(i) - 'A';
+            charVal = (charVal + shift) % 26; // Shift forward by j positions
+            char decodedChar = (char) (charVal + 'A');
+            decodedText += decodedChar;
 
         }
 
